@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Product } from "./product";
 
 function App() {
 
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:5000/api/products')
@@ -14,9 +15,9 @@ function App() {
     <div>
       <h1>Re-Store</h1>
       <ul>
-        {products && products.map((item, index) => (
-          <li key={index}>
-            {item.name} - {item.price}
+        {products && products.map(product => (
+          <li key={product.id}>
+            {product.name} - {product.price}
           </li>
         ))}
       </ul>
