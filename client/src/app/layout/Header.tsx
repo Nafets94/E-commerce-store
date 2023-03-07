@@ -1,13 +1,12 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import Switch from "@mui/material/Switch";
-import { Dispatch, SetStateAction } from "react";
 
 interface Props{
     darkMode: boolean;
-    changeDarkMode: () => void;
+    handleThemeChange: () => void;
 }
 
-export default function Header({darkMode, changeDarkMode}: Props) {
+export default function Header({darkMode, handleThemeChange}: Props) {
     return (
         <AppBar position="static" sx={{mb: 4}}>
             <Toolbar>
@@ -16,7 +15,7 @@ export default function Header({darkMode, changeDarkMode}: Props) {
                 </Typography>
                 <Switch 
                     checked = {darkMode}
-                    onChange = {changeDarkMode}
+                    onChange = {handleThemeChange}
                 />
             </Toolbar>
         </AppBar>
