@@ -1,6 +1,7 @@
 import { Alert, AlertTitle, Button, ButtonGroup, Container, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { useState } from "react";
 import agent from "../../app/api/agent";
+import { router } from "../../app/router/Routes";
 
 export default function AboutPage() {
 
@@ -28,7 +29,7 @@ export default function AboutPage() {
                 </Button>
                 <Button
                     variant="contained"
-                    onClick={() => agent.TestErrors.get404Error().catch(error => console.log(error))}>
+                    onClick={() => agent.TestErrors.get404Error().catch(error => {console.log(error); router.navigate('not-found')})}>
                         Test 404 Error
                 </Button>
                 <Button
