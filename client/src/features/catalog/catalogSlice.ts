@@ -40,7 +40,7 @@ export const fetchProductsAsync = createAsyncThunk<Product[], void, {state: Root
             thunkAPI.dispatch(setMetaData(response.metaData));
             return response.items;
         } catch (error: any) {
-            return thunkAPI.rejectWithValue({error: error.data})
+            return thunkAPI.rejectWithValue({error: error.data});
         }
     }
 )
@@ -51,7 +51,7 @@ export const fetchProductAsync = createAsyncThunk<Product, number>(
         try {
             return await agent.Catalog.details(productId);
         } catch (error: any) {
-            return thunkAPI.rejectWithValue({error: error.data})
+            return thunkAPI.rejectWithValue({error: error.data});
         }
     }
 )
