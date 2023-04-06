@@ -2,7 +2,7 @@ import { Grid, Paper } from "@mui/material";
 import { useEffect } from "react";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
-import { fetchFilters, fetchProductsAsync, productSelectors, setProductParams } from "./catalogSlice";
+import { fetchFilters, fetchProductsAsync, productSelectors, setPageNumber, setProductParams } from "./catalogSlice";
 import ProductList from "./ProductList";
 import ProductSearch from "./ProductSearch";
 import RadioButtonGroup from "../../app/components/RadioButtonGroup";
@@ -31,7 +31,7 @@ export default function Catalog() {
     if (status.includes('pending') || !metaData) return <LoadingComponent message='Loading products...' />
 
     return (
-        <Grid container spacing={4}>
+        <Grid container columnSpacing={4}>
             <Grid item xs={3}>
                 <Paper sx={{ mb: 2 }}>
                     <ProductSearch />
@@ -66,10 +66,10 @@ export default function Catalog() {
                 <ProductList products={products} />
             </Grid>
             <Grid item xs={3} />
-            <Grid item xs={9}>
+            <Grid item xs={9} sx={{mb: 2}}>
                 <AppPagination
                     metaData={metaData}
-                    onPageChange={(page:number) => dispatch(setProductParams({pageNumber: page}))}
+                    onPageChange={(page:number) => dispatch(setPageNumber({pageNumber: page}))}
                 />
             </Grid>
         </Grid>
