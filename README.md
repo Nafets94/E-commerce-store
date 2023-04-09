@@ -1,6 +1,6 @@
 # ReStore
 
-A web application that features a store where users can login / register and purchase various items.
+A web application that features a store where users can login / register and purchase various products.
 
 The application is built using ```.NET 7```, ```React 18``` and ```Redux```.
 
