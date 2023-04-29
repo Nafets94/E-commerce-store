@@ -3,6 +3,7 @@ import { AppBar, Badge, Box, List, ListItem, Switch, Toolbar, Typography } from 
 import IconButton from "@mui/material/IconButton";
 import { Link, NavLink } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
+import SignedInMenu from "./SignedInMenu";
 
 const midLinks = [
     { title: 'catalog', path: '/catalog' },
@@ -33,7 +34,8 @@ interface Props {
 }
 
 export default function Header({ darkMode, handleThemeChange }: Props) {
-    const {basket} = useAppSelector(state => state.basket);
+    const { basket } = useAppSelector(state => state.basket);
+    const { user } = useAppSelector(state => state.account);
     const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
@@ -57,7 +59,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
 
                 <List sx={{ display: 'flex' }}>
                     {midLinks.map(({ title, path }) => (
-                    <ListItem
+                        <ListItem
                             component={NavLink}
                             to={path}
                             key={path}
@@ -75,18 +77,23 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
                         </Badge>
                     </IconButton>
 
-                    <List sx={{ display: 'flex' }}>
-                        {rightLinks.map(({ title, path }) => (
-                            <ListItem
-                                component={NavLink}
-                                to={path}
-                                key={path}
-                                sx={navStyles}
-                            >
-                                {title.toUpperCase()}
-                            </ListItem>
-                        ))}
-                    </List>
+                    {user ? (
+                        <SignedInMenu />
+                    ) : (
+                        <List sx={{ display: 'flex' }}>
+                            {rightLinks.map(({ title, path }) => (
+                                <ListItem
+                                    component={NavLink}
+                                    to={path}
+                                    key={path}
+                                    sx={navStyles}
+                                >
+                                    {title.toUpperCase()}
+                                </ListItem>
+                            ))}
+                        </List>
+                    )}
+
                 </Box>
 
             </Toolbar>
