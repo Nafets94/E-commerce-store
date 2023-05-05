@@ -1,4 +1,6 @@
-﻿namespace API.Entities.OrderAggregate
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace API.Entities.OrderAggregate
 {
     public class Order
     {
@@ -6,6 +8,7 @@
 
         public string BuyerId { get; set; }
 
+        [Required]
         public ShippingAddress ShippingAddress { get; set; }
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
