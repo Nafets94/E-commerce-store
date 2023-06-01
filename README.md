@@ -1,4 +1,4 @@
-# ReStore
+# E-commerce store
 
 A web application that features a store where users can login / register and purchase various products.
 
